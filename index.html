@@ -160,8 +160,7 @@
 </div>
 
 <footer>
-  <p><a href="http://htmlacademy.ru" class="footer-link"><img src="img/htmlacademy-logo.png" alt="HTML Academy"
-                                                              width="130">Сделано в HTML Academy</a>в 2017 году</p>
+  <p><a href="http://htmlacademy.ru" class="footer-link"><img src="img/htmlacademy-logo.png" alt="HTML Academy" width="130">Сделано в HTML Academy</a>в 2017 году</p>
 </footer>
 
 <template id="similar-wizard-template" style="display: none">
@@ -181,34 +180,33 @@
 </template>
 
 <script>
+  'use strict';
+  
   const fireballSize = 22;
 
-  const getFireballSpeed = function (isLeft) {
-    isLeft ? 5 : 2;
+  window.getFireballSpeed = function (isLeft) {
+    return isLeft ? 2 : 5;
   };
-  
   const wizardSpeed = 3;
 
   const wizardWidth = 70;
 
-  const getWizardHeight = function () { 
-    // По идее можно передавать wizardWidth как аргумент функции
+  window.getWizardHeight = function (wizardWidth) {
     return wizardWidth * 1.337;
   };
 
-  const getWizardY = function (gameFieldHeight) {
+  window.getWizardY = function (gameFieldHeight) {
     return gameFieldHeight / 3;
-    // return innerHeight / 3; Я бы так нашёл высоту 
-  }
+  };
 
-  const getWizardX = function (gameFieldWidth) { 
-    // Аналочно можно передать wizardWidth как аргумент
+  window.getWizardX = function (gameFieldWidth) {
+    // Если я передаю в эту функцию параметр wizardWidth - программа падает
+    // Почему?
     return (gameFieldWidth - wizardWidth) / 2;
-    // return (innerWidth - wizardWidth) / 2; А так ширину 
-  }
+  };
 
 </script>
-
+<script src="js/start.js"></script>
 <script src="js/game.js"></script>
 
 </body>
