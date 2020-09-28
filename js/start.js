@@ -16,7 +16,7 @@ const GRAPH_Y = CLOUD_HEIGHT - GAP * 3;
 const TIME_Y = 220;
 const TEXT_X = CLOUD_WIDTH / 2;
 const TEXT_Y = CLOUD_Y * 2;
-const congratulationText = [`Ура вы победили!`, `Список результатов:`];
+const CONGRATULATION_TEXT = [`Ура вы победили!`, `Список результатов:`];
 
 const renderCloud = (ctx, x, y, color) => {
   ctx.fillStyle = color;
@@ -54,10 +54,10 @@ window.renderStatistics = (ctx, players, times) => {
       `rgb(255, 255, 255)`
   );
 
-  for (let i = 0; i < congratulationText.length; i++) {
+  for (let i = 0; i < CONGRATULATION_TEXT.length; i++) {
     writeText(
         ctx,
-        congratulationText[i],
+        CONGRATULATION_TEXT[i],
         TEXT_X,
         TEXT_Y * (i + 1)
     );
