@@ -836,6 +836,7 @@ input[type=radio]:checked + .review-mark-label
 
     background: url('../img/fireball-mask.png');
     background-size: 75px 75px;
+    cursor: pointer;
 }
 
 .setup-artifacts
