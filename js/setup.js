@@ -63,7 +63,7 @@ const MIN_NAME_LENGTH = 2;
 const MAX_NAME_LENGTH = 25;
 
 const getColor = (array, element, input) => {
-  let color = array[getRandomNumber(array.length)];
+  const color = array[getRandomNumber(array.length)];
 
   element.style.fill = color;
   element.style.background = color;
@@ -87,17 +87,13 @@ const formValidation = (input) => {
   }
 };
 const formLiveValidation = (input) => {
-  let valueLength = input.value.length;
-  // console.log(valueLength, MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+  const valueLength = input.value.length;
+
   if (valueLength < MIN_NAME_LENGTH) {
-    // console.log(`min`);
     input.setCustomValidity(`Ещё ${MIN_NAME_LENGTH - valueLength} симв.`);
   } else if (valueLength > MAX_NAME_LENGTH) {
-    // console.log(`max`);
     input.setCustomValidity(`Удалите лишние симв.`);
-    // Если удалить maxlength="25"
   } else {
-    // console.log(`0`);
     input.setCustomValidity(``);
   }
 
@@ -105,54 +101,39 @@ const formLiveValidation = (input) => {
 };
 const inputStop = (evt) => evt.key === `Escape` ? evt.stopPropagation() : null;
 
+const formValidationName = () => formValidation(userNameInput);
+const formLiveValidationName = () => formLiveValidation(userNameInput);
+
+const getColorFareball = () => getColor(FIREBALL_COLORS, setupFireball, userFireball);
+const getColorCout = () => getColor(COAT_COLORS, setupCoat, userCoat);
+const getColorEyes = () => getColor(EYES_COLORS, setupEyes, userEyes);
+
+
 const openPopup = () => {
   setup.classList.remove(`hidden`);
 
   document.addEventListener(`keydown`, onPopupEscPress);
-  userNameInput.addEventListener(`keydown`, (evt) => {
-    inputStop(evt);
-  });
-  userNameInput.addEventListener(`invalid`, () => {
-    formValidation(userNameInput);
-  });
-  userNameInput.addEventListener(`input`, () => {
-    formLiveValidation(userNameInput);
-  });
-  // При таком исполнении formLiveValidation - не срабатывает. Почему?
-  // userNameInput.addEventListener(`invalid`, formValidation(userNameInput));
-  // userNameInput.addEventListener(`input`, formLiveValidation(userNameInput));
+  userNameInput.addEventListener(`keydown`, inputStop);
 
+  userNameInput.addEventListener(`invalid`, formValidationName);
+  userNameInput.addEventListener(`input`, formLiveValidationName);
 
-  setupFireball.addEventListener(`click`, () => {
-    getColor(FIREBALL_COLORS, setupFireball, userFireball);
-  });
-  setupCoat.addEventListener(`click`, () => {
-    getColor(COAT_COLORS, setupCoat, userCoat);
-  });
-  setupEyes.addEventListener(`click`, () => {
-    getColor(EYES_COLORS, setupEyes, userEyes);
-  });
+  setupFireball.addEventListener(`click`, getColorFareball);
+  setupCoat.addEventListener(`click`, getColorCout);
+  setupEyes.addEventListener(`click`, getColorEyes);
 };
 const closePopup = () => {
   setup.classList.add(`hidden`);
 
   document.removeEventListener(`keydown`, onPopupEscPress);
-  userNameInput.removeEventListener(`keydown`, (evt) => {
-    inputStop(evt);
-  });
-  userNameInput.removeEventListener(`invalid`, () => {
-    formValidation(userNameInput);
-  });
-  userNameInput.removeEventListener(`input`, () => {
-    formLiveValidation(userNameInput);
-  });
-  // userNameInput.removeEventListener(`invalid`, formValidation(userNameInput));
-  // userNameInput.removeEventListener(`input`, formLiveValidation(userNameInput));
+  userNameInput.removeEventListener(`keydown`, inputStop);
 
+  userNameInput.removeEventListener(`invalid`, formValidationName);
+  userNameInput.removeEventListener(`input`, formLiveValidationName);
 
-  setupFireball.removeEventListener(`click`, getColor(FIREBALL_COLORS, setupFireball, userFireball));
-  setupCoat.removeEventListener(`click`, getColor(COAT_COLORS, setupCoat, userCoat));
-  setupEyes.removeEventListener(`click`, getColor(EYES_COLORS, setupEyes, userEyes));
+  setupFireball.removeEventListener(`click`, getColorFareball);
+  setupCoat.removeEventListener(`click`, getColorCout);
+  setupEyes.removeEventListener(`click`, getColorEyes);
 };
 
 setupOpen.addEventListener(`click`, () => {
