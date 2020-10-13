@@ -8,4 +8,18 @@
     EYES_COLORS: [`black`, `red`, `blue`, `yellow`, `green`],
     FIREBALL_COLORS: [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`],
   };
+
+  // const createWizard = (count) => {
+  //   const wizards = [];
+  //   for (let i = 0; i < count; i++) {
+  //     wizards.push({
+  //       name: window.util.getElement(window.data.WIZARD_NAMES),
+  //       fullName: window.util.getElement(window.data.WIZARD_FULL_NAMES),
+  //       coatColor: window.util.getElement(window.data.COAT_COLORS),
+  //       eyesColor: window.util.getElement(window.data.EYES_COLORS)
+  //     });
+  //   }
+  //   return wizards;
+  // };
+  // const wizards = createWizard(WIZARDS_COUNT);
 })();

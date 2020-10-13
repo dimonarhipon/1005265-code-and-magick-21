@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 (function () {
   const dialogElement = document.querySelector(`.setup`);
