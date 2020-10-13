@@ -37,6 +37,8 @@
     setupFireball.addEventListener(`click`, getColorFareball);
     setupCoat.addEventListener(`click`, getColorCout);
     setupEyes.addEventListener(`click`, getColorEyes);
+
+    form.addEventListener(`submit`, submitHandler);
   };
 
   const closePopup = () => {
@@ -51,6 +53,8 @@
     setupFireball.removeEventListener(`click`, getColorFareball);
     setupCoat.removeEventListener(`click`, getColorCout);
     setupEyes.removeEventListener(`click`, getColorEyes);
+
+    form.removeEventListener(`submit`, submitHandler);
   };
 
   // Логика формирования рандомного цвета
@@ -62,5 +66,14 @@
   const getColorCout = () => window.util.getColor(window.data.COAT_COLORS, setupCoat);
   const getColorEyes = () => window.util.getColor(window.data.EYES_COLORS, setupEyes);
 
+
+  // Отправка формы
+  const form = setup.querySelector(`.setup-wizard-form`);
+  const submitHandler = (evt) => {
+    window.backend.save(new FormData(form), () => {
+      setup.classList.add(`hidden`);
+    });
+    evt.preventDefault();
+  };
 })();
 
